@@ -1,0 +1,57 @@
+1- Frameworks
+    a- Flutter
+    b- React Native
+2- UI libraries
+    a- Material Design (Flutter)
+    b- React Native Paper
+3- State management
+    a- Flutter: provier or riverpod
+    b- React Native: Redux or Zustand
+
+
+Backend
+1- Frameworks
+    a- Spring Framework
+    b- Node.js
+    c- Django
+2- Authentication
+    a- Firebase Authentication (if using firebase)
+    b- JSON Web Tokens (JWT) for custom authentication
+        Spring Security with JWT
+3- Rest Api or GraphQL
+    a- GraphQL: flexible querying for advanced features
+
+
+Database
+1- Relational
+    a- PostgreSQL
+    b- SQLite
+    c- H2 in memory Database for development
+
+3- ORM
+    a- Spring Data JPA with Hibernate for database interactions
+
+2- NoSQL
+    a- Firebase Firestore
+    b- MongoDb
+
+Other Tools:
+1- Version control
+    a- *Github or Gitlab
+2- CI/CD
+    a- Github Actions or CircleCI
+3- Testing
+    a- Unit Testing: Jest (React Native) or Flutter Test
+    b- End to End Testing: Cypress or Appium
+
+4- API Documentation
+    a- Swagger or OpenAI for documenting and testing APIs
+
+5- Build Tool
+    a- Maven or Gradle
+
+6- Hosting
+    a- Google cloud
+    b- AWS
+    c- Azure
+    d- Heroku for simlicity
