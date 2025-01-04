@@ -55,3 +55,10 @@ Other Tools:
     b- AWS
     c- Azure
     d- Heroku for simlicity
+    
+    
+---
+
+* Web Frontend: React or Vue.js.
+* Mobile Apps (iOS & Android): React Native (if you want to share knowledge between web and mobile) or Flutter (if you prefer a single framework for both).
+* Backend: Spring Boot with REST APIs.

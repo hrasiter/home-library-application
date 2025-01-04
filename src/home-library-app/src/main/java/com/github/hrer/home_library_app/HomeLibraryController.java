@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @Controller//@RestController
-@RequestMapping("/")
+@RequestMapping("/homelibrary")
 public class HomeLibraryController {
 
 	private BookRepository bookRepo;
@@ -39,6 +39,6 @@ public class HomeLibraryController {
 	@PathVariable("author") String author, Book book) {
 	book.setAuthor(author);
 	bookRepo.save(book);
-	return "redirect:/{author}";
+	return "redirect:/homelibrary/{author}";
 	}
 }
