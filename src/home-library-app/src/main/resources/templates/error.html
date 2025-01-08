@@ -1,9 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
 <head>
 <title>Oops!</title>
 <link rel="stylesheet" th:href="@{/style.css}"></link>
 </head>
-<html>
 <div class="errorPage">
 	<span class="oops">Oops!</span><br /> <img
 		th:src="@{/MissingPage.png}"></img>
@@ -13,5 +14,4 @@
 	</p>
 	<p th:text="${'Details: ' + trace}"></p>
 </div>
-</html>
 </html>

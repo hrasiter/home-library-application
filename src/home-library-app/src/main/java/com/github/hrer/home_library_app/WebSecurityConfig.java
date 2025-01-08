@@ -16,39 +16,6 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-	//	
-	//	@Bean
-	//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-	//		http
-	//		.authorizeHttpRequests((requests)-> requests
-	//				.requestMatchers("/home").permitAll()
-	//				.anyRequest().authenticated()
-	//				)	
-	//		.formLogin((form) -> form
-	//				.loginPage("/login")
-	//				.permitAll()
-	//				)
-	//		.logout((logout) -> logout
-	//				.permitAll()
-	//				)
-	//		.csrf().disable(); //Web browser'dan kitap ekleme yapılamaya çalışıldığında 403 forbidden hatası için eklendi.
-	//		
-	//		return http.build();
-	//		
-	//	}
-	//	
-	//	@Bean
-	//	public UserDetailsService userDetailsService() {
-	//		UserDetails user =
-	//				User.withDefaultPasswordEncoder()
-	//				.username("user")
-	//				.password("password")
-	//				.roles("USER")
-	//				.build();
-	//		
-	//		return new InMemoryUserDetailsManager(user);
-	//	}
-	//
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -57,12 +24,37 @@ public class WebSecurityConfig {
 				.requestMatchers("/", "/home", "/login").permitAll()  // Allow public access
 				.anyRequest().authenticated()  // Require authentication for other URLs
 				)
-		.exceptionHandling(e -> e
-				.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))  // Custom entry point for unauthorized access
+//		.exceptionHandling(e -> e
+//				.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))  // Custom entry point for unauthorized access
+//				)
+		.formLogin((form) -> form
+				.loginPage("/login")
+				.successHandler(new CustomAuthenticationSuccessHandler())
+				.permitAll()
 				)
-		.oauth2Login();  // Enable OAuth2 login
+		  .logout(logout -> logout
+		            .logoutSuccessUrl("/login?logout")  // Redirect after logout
+		            .permitAll())
+		.csrf().disable()
+		.oauth2Login(oauth -> oauth
+                .loginPage("/login")  // Reuse the same login page for OAuth2 login
+                //.defaultSuccessUrl("/homelibrary/", true)
+                .successHandler(new CustomOAuth2SuccessHandler())
+                );  // Enable OAuth2 login
 
 		return http.build();  // Return the security filter chain
+	}
+
+	@Bean
+	public UserDetailsService userDetailsService() {
+		UserDetails user =
+				User.withDefaultPasswordEncoder()
+				.username("user")
+				.password("password")
+				.roles("USER")
+				.build();
+
+		return new InMemoryUserDetailsManager(user);
 	}
 
 }

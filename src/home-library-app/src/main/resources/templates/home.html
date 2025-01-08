@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-    <head>
-        <title>Spring Home Library</title>
-    </head>
-    <body>
-        <h1>Welcome to Home Library Application!</h1>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Spring Home Library</title>
+</head>
+<body>
+	<h1>Welcome to Home Library Application!</h1>
 
-        <p>Click <a th:href="@{/login}">here</a> to login.</p>
-    </body>
-    
-    <div class="container unauthenticated">
-    With GitHub: <a href="/oauth2/authorization/github">click here</a>
-</div>
-<div class="container authenticated" style="display:none">
-    Logged in as: <span id="user"></span>
+	<p>
+		Click <a th:href="@{/login}">here</a> to login.
+	</p>
+</body>
+
+<div class="container authenticated" style="display: none">
+	Logged in as: <span id="user"></span>
 </div>
 
 <script type="text/javascript">
-    $.get("/user", function(data) {
-        $("#user").html(data.name);
-        $(".unauthenticated").hide()
-        $(".authenticated").show()
-    });
+	$.get("/user", function(data) {
+		$("#user").html(data.name);
+		$(".unauthenticated").hide()
+		$(".authenticated").show()
+	});
 </script>
 </html>

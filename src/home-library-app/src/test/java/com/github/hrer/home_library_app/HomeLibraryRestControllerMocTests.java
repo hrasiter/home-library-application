@@ -40,7 +40,7 @@ public class HomeLibraryRestControllerMocTests {
 	@WithMockUser //Burası çokomel
 	void postBook() throws Exception{
 		mockMvc.perform(post("/homelibrary/harun")
-				.with(csrf()) //burası çokomel
+				//.with(csrf()) //burası çokomel eger websecurity config'de csfr disable edilmemişse
 				.param("title", "BOOK TITLE")
 				.param("author", "BOOK AUTHOR")
 				.param("ISBN", "1234567890")
@@ -63,5 +63,8 @@ public class HomeLibraryRestControllerMocTests {
 //						.andExpect(model().attribute("books", hasSize(1)));
 		//				.andExpect(model().attribute("books",
 		//				contains(samePropertyValuesAs(expectedBook))));
+		
+		mockMvc.perform(get("/bookinfo?name="+expectedBook.getTitle())).andDo(print()).andExpect(status().isOk())
+		.andExpect(content().string(containsString(expectedBook.getTitle())));
 	}
 }
