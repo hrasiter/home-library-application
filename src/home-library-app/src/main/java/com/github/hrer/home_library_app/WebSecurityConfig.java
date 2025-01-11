@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -37,8 +38,10 @@ public class WebSecurityConfig {
 		http
 		.authorizeRequests(a -> a
 				.requestMatchers("/", "/home", "/login", "/h2-console").permitAll()  // Allow public access
+		         .requestMatchers("/h2-console/**").permitAll()
 				.anyRequest().authenticated()  // Require authentication for other URLs
 				)
+		.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)) //solution code
 //		.exceptionHandling(e -> e
 //				.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))  // Custom entry point for unauthorized access
 //				)
